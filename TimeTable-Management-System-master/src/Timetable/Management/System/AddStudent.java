@@ -5,6 +5,10 @@
  */
 package Timetable.Management.System;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author user
@@ -170,11 +174,19 @@ public class AddStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_addsgroupActionPerformed
 
     private void generateGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateGroupActionPerformed
-        new GenerateGroups().setVisible(true);
+        try {
+            new GenerateGroups().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_generateGroupActionPerformed
 
     private void generatesgroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generatesgroupActionPerformed
-       new GenerateSubGroup().setVisible(true);
+        try {
+            new GenerateSubGroup().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_generatesgroupActionPerformed
 
     /**
