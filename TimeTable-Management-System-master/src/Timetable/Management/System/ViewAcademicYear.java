@@ -269,20 +269,30 @@ public class ViewAcademicYear extends javax.swing.JFrame {
     }//GEN-LAST:event_editActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-     try {
-         // TODO add your handling code here:
 
-         stmt = con.createStatement();
-     } catch (SQLException ex) {
-         Logger.getLogger(ViewAcademicYear.class.getName()).log(Level.SEVERE, null, ex);
-     }
-      String sql = "DELETE FROM Registration " +
-                   "WHERE id = 101";
-     try {
-         stmt.executeUpdate(sql);
-     } catch (SQLException ex) {
-         Logger.getLogger(ViewAcademicYear.class.getName()).log(Level.SEVERE, null, ex);
-     }
+        int index = jTable1.getSelectedRow();
+       if(index != -1) {
+        int modelIndex = jTable1.convertRowIndexToModel(index); // converts the row index in the view to the appropriate index in the model
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        model.removeRow(modelIndex);
+        
+        try{
+        stmt = new DBconnection().getDB().createStatement();
+                
+                String sql = "DELETE FROM AcademicYear" +
+                   " WHERE Name = '"+editable+"'";
+                System.out.println(sql);
+                stmt.executeUpdate(sql);
+            //success msg
+            JOptionPane.showMessageDialog(this, "Record deleted succesfully","Successful",JOptionPane.INFORMATION_MESSAGE);
+       }catch(Exception e){
+       JOptionPane.showMessageDialog(this, "Error","Error",JOptionPane.ERROR_MESSAGE);
+       
+       }
+    }else{
+       
+       JOptionPane.showMessageDialog(this, "Please select a record","Error",JOptionPane.ERROR_MESSAGE);
+       }
     }//GEN-LAST:event_deleteActionPerformed
 
     /**

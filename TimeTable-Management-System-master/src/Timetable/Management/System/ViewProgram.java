@@ -155,6 +155,11 @@ public class ViewProgram extends javax.swing.JFrame {
         });
 
         delete.setText("Remove");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -220,6 +225,32 @@ public class ViewProgram extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_editActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        int index = jTable1.getSelectedRow();
+       if(index != -1) {
+        int modelIndex = jTable1.convertRowIndexToModel(index); // converts the row index in the view to the appropriate index in the model
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        model.removeRow(modelIndex);
+        
+        try{
+         Statement stmt = new DBconnection().getDB().createStatement();
+                
+                String sql = "DELETE FROM Program" +
+                   " WHERE Program = '"+editable+"'";
+                System.out.println(sql);
+                stmt.executeUpdate(sql);
+            //success msg
+            JOptionPane.showMessageDialog(this, "Record deleted succesfully","Successful",JOptionPane.INFORMATION_MESSAGE);
+       }catch(Exception e){
+       JOptionPane.showMessageDialog(this, "Error","Error",JOptionPane.ERROR_MESSAGE);
+       
+       }
+    }else{
+       
+       JOptionPane.showMessageDialog(this, "Please select a record","Error",JOptionPane.ERROR_MESSAGE);
+       }
+    }//GEN-LAST:event_deleteActionPerformed
 
     /**
      * @param args the command line arguments
