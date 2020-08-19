@@ -7,6 +7,7 @@ package Timetable.Management.System;
 
 import DB.DBconnection;
 import Model.AcademicYearAndSemester;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
@@ -41,6 +42,7 @@ public class ViewSubgroups extends javax.swing.JFrame {
         initComponents();
         showDetails();
         selectRow();
+        setLocationRelativeTo(null);
     }
 
     
@@ -54,6 +56,7 @@ public class ViewSubgroups extends javax.swing.JFrame {
         TableCellRenderer rendererFromHeader = jTable1.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
+         jTable1.getTableHeader().setFont(new Font("TimesNewRoman", Font.PLAIN, 16));
          
         //table row alignments to center
         jTable1.getColumnModel().getColumn(0).setCellRenderer(centerAlign);
@@ -117,7 +120,9 @@ public class ViewSubgroups extends javax.swing.JFrame {
         edit = new javax.swing.JButton();
         delete = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("View Sub Group Numbers");
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 1200, 650));
         setMaximumSize(new java.awt.Dimension(1200, 650));
         setMinimumSize(new java.awt.Dimension(1200, 650));
 
@@ -126,6 +131,7 @@ public class ViewSubgroups extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/viewsubgroup.jpg"))); // NOI18N
 
+        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -143,8 +149,11 @@ public class ViewSubgroups extends javax.swing.JFrame {
             }
         });
         jTable1.setRowHeight(25);
+        jTable1.setRowMargin(3);
         jScrollPane1.setViewportView(jTable1);
 
+        add.setBackground(new java.awt.Color(204, 204, 204));
+        add.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         add.setText("Add");
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,6 +161,8 @@ public class ViewSubgroups extends javax.swing.JFrame {
             }
         });
 
+        edit.setBackground(new java.awt.Color(204, 204, 204));
+        edit.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         edit.setText("Edit");
         edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +170,8 @@ public class ViewSubgroups extends javax.swing.JFrame {
             }
         });
 
+        delete.setBackground(new java.awt.Color(204, 204, 204));
+        delete.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         delete.setText("Remove");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,11 +187,11 @@ public class ViewSubgroups extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(268, 268, 268)
+                        .addGap(347, 347, 347)
                         .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
+                        .addGap(48, 48, 48)
                         .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
+                        .addGap(45, 45, 45)
                         .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(443, 443, 443)
@@ -191,12 +204,12 @@ public class ViewSubgroups extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 102, Short.MAX_VALUE))
+                    .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 127, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -216,6 +229,7 @@ public class ViewSubgroups extends javax.swing.JFrame {
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
         new AddSubGroup().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_addActionPerformed
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
@@ -226,6 +240,7 @@ public class ViewSubgroups extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             new EditSubGroup(editable).setVisible(true);
+            this.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(ViewSubgroups.class.getName()).log(Level.SEVERE, null, ex);
         }

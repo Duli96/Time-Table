@@ -26,6 +26,7 @@ public class AddTags extends javax.swing.JFrame {
     Connection con;
     public AddTags() {
         initComponents();
+         setLocationRelativeTo(null);
     }
 
     
@@ -59,9 +60,11 @@ public class AddTags extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         viewlist = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Tags");
-        setMaximizedBounds(new java.awt.Rectangle(0, 0, 1200, 350));
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 1200, 650));
+        setMaximumSize(new java.awt.Dimension(1200, 650));
+        setMinimumSize(new java.awt.Dimension(1200, 650));
 
         jPanel1.setMaximumSize(new java.awt.Dimension(1200, 650));
         jPanel1.setMinimumSize(new java.awt.Dimension(1200, 650));
@@ -99,6 +102,7 @@ public class AddTags extends javax.swing.JFrame {
         jLabel1.setMinimumSize(new java.awt.Dimension(1200, 371));
         jLabel1.setPreferredSize(new java.awt.Dimension(1200, 371));
 
+        viewlist.setBackground(new java.awt.Color(255, 255, 255));
         viewlist.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         viewlist.setText("View Tag List");
         viewlist.addActionListener(new java.awt.event.ActionListener() {
@@ -126,17 +130,17 @@ public class AddTags extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(tag, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(viewlist)))
+                        .addGap(42, 42, 42)
+                        .addComponent(viewlist, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(viewlist, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tag, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))

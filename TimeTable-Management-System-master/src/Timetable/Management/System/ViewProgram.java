@@ -7,6 +7,7 @@ package Timetable.Management.System;
 
 import DB.DBconnection;
 import Model.AcademicYearAndSemester;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
@@ -40,6 +41,7 @@ public class ViewProgram extends javax.swing.JFrame {
         initComponents();
         showDetails();
         selectRow();
+        setLocationRelativeTo(null);
     }
 
     
@@ -52,6 +54,7 @@ public class ViewProgram extends javax.swing.JFrame {
         TableCellRenderer rendererFromHeader = jTable1.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
+         jTable1.getTableHeader().setFont(new Font("TimesNewRoman", Font.PLAIN, 16));
          
         //table row alignments to center
         jTable1.getColumnModel().getColumn(0).setCellRenderer(centerAlign);
@@ -113,7 +116,9 @@ public class ViewProgram extends javax.swing.JFrame {
         edit = new javax.swing.JButton();
         delete = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("View Program List");
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 1200, 650));
         setMaximumSize(new java.awt.Dimension(1200, 650));
         setMinimumSize(new java.awt.Dimension(1200, 650));
 
@@ -122,6 +127,7 @@ public class ViewProgram extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/viewprogram.jpg"))); // NOI18N
 
+        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -138,8 +144,11 @@ public class ViewProgram extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setRowHeight(25);
+        jTable1.setRowMargin(3);
         jScrollPane1.setViewportView(jTable1);
 
+        add.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         add.setText("Add");
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +156,7 @@ public class ViewProgram extends javax.swing.JFrame {
             }
         });
 
+        edit.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         edit.setText("Edit");
         edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +164,8 @@ public class ViewProgram extends javax.swing.JFrame {
             }
         });
 
+        delete.setBackground(new java.awt.Color(204, 204, 204));
+        delete.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         delete.setText("Remove");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,6 +223,7 @@ public class ViewProgram extends javax.swing.JFrame {
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
         new AddProgram().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_addActionPerformed
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
@@ -220,6 +233,7 @@ public class ViewProgram extends javax.swing.JFrame {
         }else{
             try {
                 new EditProgram(editable).setVisible(true);
+                this.setVisible(false);
             } catch (SQLException ex) {
                 Logger.getLogger(ViewProgram.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -8,6 +8,10 @@ package Timetable.Management.System;
 import DB.DBconnection;
 import Model.AcademicYearAndSemester;
 import java.awt.Color;
+import static java.awt.Color.red;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
@@ -20,8 +24,10 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -37,14 +43,18 @@ public class ViewAcademicYear extends javax.swing.JFrame {
   AcademicYearAndSemester object;
   String editable = "";
   Statement stmt;
+  
+   
     
     /**
      * Creates new form ViewAcademicYear
      */
     public ViewAcademicYear() throws SQLException {
         initComponents();
-        showDetails();
+       showDetails();
         selectRow();
+         setLocationRelativeTo(null);
+       
        
     }
 
@@ -58,7 +68,10 @@ public class ViewAcademicYear extends javax.swing.JFrame {
         TableCellRenderer rendererFromHeader = jTable1.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
-         
+        jTable1.getTableHeader().setFont(new Font("TimesNewRoman", Font.PLAIN, 15));
+        
+       
+                  
         //table row alignments to center
         jTable1.getColumnModel().getColumn(0).setCellRenderer(centerAlign);
         jTable1.getColumnModel().getColumn(1).setCellRenderer(centerAlign);
@@ -71,6 +84,7 @@ public class ViewAcademicYear extends javax.swing.JFrame {
        
        ResultSet result = stmt.executeQuery(sql);
         table = (DefaultTableModel) jTable1.getModel(); 
+        
        Object[] column = new Object[3];
        
        while(result.next()){
@@ -90,6 +104,8 @@ public class ViewAcademicYear extends javax.swing.JFrame {
              
        
        }
+       
+       
     
     }
     
@@ -130,16 +146,18 @@ public class ViewAcademicYear extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("View Academic Year and Semester");
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 1200, 650));
         setMaximumSize(new java.awt.Dimension(1200, 650));
         setMinimumSize(new java.awt.Dimension(1200, 650));
+        setPreferredSize(new java.awt.Dimension(1200, 650));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(1200, 650));
         jPanel1.setMinimumSize(new java.awt.Dimension(1200, 650));
         jPanel1.setPreferredSize(new java.awt.Dimension(1200, 650));
 
+        edit.setBackground(new java.awt.Color(204, 204, 204));
         edit.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         edit.setText("Edit");
         edit.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +166,7 @@ public class ViewAcademicYear extends javax.swing.JFrame {
             }
         });
 
+        delete.setBackground(new java.awt.Color(204, 204, 204));
         delete.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         delete.setText("Remove");
         delete.addActionListener(new java.awt.event.ActionListener() {
@@ -156,6 +175,7 @@ public class ViewAcademicYear extends javax.swing.JFrame {
             }
         });
 
+        add.setBackground(new java.awt.Color(204, 204, 204));
         add.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         add.setText("Add");
         add.addActionListener(new java.awt.event.ActionListener() {
@@ -191,60 +211,56 @@ public class ViewAcademicYear extends javax.swing.JFrame {
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
         jTable1.setRowHeight(25);
         jTable1.setRowMargin(3);
-        jTable1.setSelectionBackground(new java.awt.Color(0, 204, 255));
+        jTable1.setSelectionBackground(new java.awt.Color(0, 102, 255));
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(1).setResizable(false);
         }
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/viewyear_1.jpg"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1247, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(283, 283, 283)
-                        .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(256, 256, 256)
+                        .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(208, 208, 208)
+                        .addGap(221, 221, 221)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(477, Short.MAX_VALUE))
         );
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/viewyear_1.jpg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1247, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
 
         pack();
@@ -253,6 +269,7 @@ public class ViewAcademicYear extends javax.swing.JFrame {
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
         new AddAcademicYear().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_addActionPerformed
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
@@ -262,6 +279,7 @@ public class ViewAcademicYear extends javax.swing.JFrame {
       }else{
           try {
               new EditAcademicYear(editable).setVisible(true);
+              this.setVisible(false);
           } catch (SQLException ex) {
               Logger.getLogger(ViewAcademicYear.class.getName()).log(Level.SEVERE, null, ex);
           }
@@ -321,12 +339,17 @@ public class ViewAcademicYear extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ViewAcademicYear.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+      
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
+             
+            
             public void run() {
+                
                 try {
                     new ViewAcademicYear().setVisible(true);
+                    
                 } catch (SQLException ex) {
                     Logger.getLogger(ViewAcademicYear.class.getName()).log(Level.SEVERE, null, ex);
                 }

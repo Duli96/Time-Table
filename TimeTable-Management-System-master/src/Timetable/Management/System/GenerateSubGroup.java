@@ -28,6 +28,7 @@ public class GenerateSubGroup extends javax.swing.JFrame {
         initComponents();
         showGroupId();
         subGroupNumber();
+         setLocationRelativeTo(null);
     }
 
    public void showGroupId() throws SQLException{
@@ -94,9 +95,10 @@ public class GenerateSubGroup extends javax.swing.JFrame {
         subgroup = new javax.swing.JComboBox<>();
         genSubGroup = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        viewlist1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Generate sub group id");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Generate Sub Group IDs");
         setMaximizedBounds(new java.awt.Rectangle(0, 0, 1200, 650));
         setMaximumSize(new java.awt.Dimension(1200, 650));
         setMinimumSize(new java.awt.Dimension(1200, 650));
@@ -136,6 +138,15 @@ public class GenerateSubGroup extends javax.swing.JFrame {
         jLabel1.setMinimumSize(new java.awt.Dimension(1200, 371));
         jLabel1.setPreferredSize(new java.awt.Dimension(1200, 371));
 
+        viewlist1.setBackground(new java.awt.Color(255, 255, 255));
+        viewlist1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        viewlist1.setText("View Generated Sub Group IDs");
+        viewlist1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewlist1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -156,12 +167,18 @@ public class GenerateSubGroup extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(genSubGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(489, 489, 489))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(viewlist1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, Short.MAX_VALUE)
-                .addGap(123, 123, 123)
+                .addGap(41, 41, 41)
+                .addComponent(viewlist1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(groupid, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
@@ -235,6 +252,15 @@ public class GenerateSubGroup extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_genSubGroupActionPerformed
 
+    private void viewlist1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewlist1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            new ViewGeneratedSubGroups().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddTags.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_viewlist1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -282,5 +308,6 @@ public class GenerateSubGroup extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> subgroup;
+    private javax.swing.JButton viewlist1;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,6 +26,7 @@ public class AddSubGroup extends javax.swing.JFrame {
      */
     public AddSubGroup() {
         initComponents();
+         setLocationRelativeTo(null);
     }
 
     
@@ -58,10 +59,11 @@ public class AddSubGroup extends javax.swing.JFrame {
         resetbtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         viewlist1 = new javax.swing.JButton();
-        viewlist = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Add sub-group numbers");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add Sub-Group Numbers");
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 1200, 650));
+        setMinimumSize(new java.awt.Dimension(1200, 650));
 
         jPanel1.setMaximumSize(new java.awt.Dimension(1200, 650));
         jPanel1.setMinimumSize(new java.awt.Dimension(1200, 650));
@@ -101,6 +103,7 @@ public class AddSubGroup extends javax.swing.JFrame {
         jLabel3.setMinimumSize(new java.awt.Dimension(1200, 371));
         jLabel3.setPreferredSize(new java.awt.Dimension(1600, 371));
 
+        viewlist1.setBackground(new java.awt.Color(255, 255, 255));
         viewlist1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         viewlist1.setText("View Sub-Group Numbers List");
         viewlist1.addActionListener(new java.awt.event.ActionListener() {
@@ -113,69 +116,54 @@ public class AddSubGroup extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(490, Short.MAX_VALUE)
                         .addComponent(addYear, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(47, 47, 47)
+                        .addComponent(resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(306, 306, 306))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
-                        .addGap(29, 29, 29)
-                        .addComponent(subgroup, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(346, 346, 346))
+                        .addGap(36, 36, 36)
+                        .addComponent(subgroup, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(345, 345, 345))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addComponent(viewlist1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(viewlist1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(subgroup, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addYear, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(viewlist1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(subgroup, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(69, 69, 69)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addYear, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
-
-        viewlist.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        viewlist.setText("View Group Numbers List");
-        viewlist.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewlistActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(504, 504, 504)
-                    .addComponent(viewlist)
-                    .addContainerGap(505, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(302, 302, 302)
-                    .addComponent(viewlist, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(303, Short.MAX_VALUE)))
         );
 
         pack();
@@ -236,17 +224,13 @@ public class AddSubGroup extends javax.swing.JFrame {
         subgroup.setText("");
     }//GEN-LAST:event_resetbtnActionPerformed
 
-    private void viewlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewlistActionPerformed
+    private void viewlist1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewlist1ActionPerformed
         try {
             // TODO add your handling code here:
             new ViewSubgroups().setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(AddSubGroup.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_viewlistActionPerformed
-
-    private void viewlist1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewlist1ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_viewlist1ActionPerformed
 
     /**
@@ -291,7 +275,6 @@ public class AddSubGroup extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton resetbtn;
     private javax.swing.JTextField subgroup;
-    private javax.swing.JButton viewlist;
     private javax.swing.JButton viewlist1;
     // End of variables declaration//GEN-END:variables
 }

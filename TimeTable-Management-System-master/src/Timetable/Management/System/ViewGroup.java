@@ -7,6 +7,7 @@ package Timetable.Management.System;
 
 import DB.DBconnection;
 import Model.AcademicYearAndSemester;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
@@ -41,6 +42,7 @@ public class ViewGroup extends javax.swing.JFrame {
         initComponents();
         showDetails();
         selectRow();
+        setLocationRelativeTo(null);
     }
 
     
@@ -53,7 +55,7 @@ public class ViewGroup extends javax.swing.JFrame {
         TableCellRenderer rendererFromHeader = jTable1.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
-         
+         jTable1.getTableHeader().setFont(new Font("TimesNewRoman", Font.PLAIN, 15));
         //table row alignments to center
         jTable1.getColumnModel().getColumn(0).setCellRenderer(centerAlign);
        
@@ -61,7 +63,7 @@ public class ViewGroup extends javax.swing.JFrame {
        Statement stmt = null;
        con = new DBconnection().getDB();
        stmt = con.createStatement();
-       String sql = "SELECT id,GroupNumber from GroupNumbers";
+       String sql = "SELECT id,GroupNumber from GroupNumbers ORDER BY id";
        
        ResultSet result = stmt.executeQuery(sql);
         table = (DefaultTableModel) jTable1.getModel(); 
@@ -117,7 +119,8 @@ public class ViewGroup extends javax.swing.JFrame {
         edit = new javax.swing.JButton();
         delete = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("View Groups");
         setMaximumSize(new java.awt.Dimension(1200, 650));
         setMinimumSize(new java.awt.Dimension(1200, 650));
 
@@ -144,9 +147,12 @@ public class ViewGroup extends javax.swing.JFrame {
             }
         });
         jTable1.setRowHeight(25);
+        jTable1.setRowMargin(3);
         jTable1.setSelectionBackground(new java.awt.Color(0, 204, 255));
         jScrollPane1.setViewportView(jTable1);
 
+        add.setBackground(new java.awt.Color(204, 204, 204));
+        add.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         add.setText("Add");
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +160,8 @@ public class ViewGroup extends javax.swing.JFrame {
             }
         });
 
+        edit.setBackground(new java.awt.Color(204, 204, 204));
+        edit.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         edit.setText("Edit");
         edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +169,8 @@ public class ViewGroup extends javax.swing.JFrame {
             }
         });
 
+        delete.setBackground(new java.awt.Color(204, 204, 204));
+        delete.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         delete.setText("Remove");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,11 +186,11 @@ public class ViewGroup extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(271, 271, 271)
+                        .addGap(282, 282, 282)
                         .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
+                        .addGap(65, 65, 65)
                         .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
+                        .addGap(55, 55, 55)
                         .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(451, 451, 451)
@@ -218,6 +228,7 @@ public class ViewGroup extends javax.swing.JFrame {
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
         new AddGroup().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_addActionPerformed
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
@@ -227,6 +238,7 @@ public class ViewGroup extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             new EditGroup(editable).setVisible(true);
+            this.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(ViewGroup.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -29,6 +29,7 @@ public class EditTags extends javax.swing.JFrame {
         this.value = value;
         initComponents();
         showDetails();
+         setLocationRelativeTo(null);
     }
 
     private EditTags() {
@@ -71,7 +72,9 @@ public class EditTags extends javax.swing.JFrame {
         resetbtn = new javax.swing.JButton();
         viewlist1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Edit Tags");
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 1200, 650));
         setMaximumSize(new java.awt.Dimension(1200, 650));
         setMinimumSize(new java.awt.Dimension(1200, 650));
         setPreferredSize(new java.awt.Dimension(1200, 650));
@@ -109,6 +112,7 @@ public class EditTags extends javax.swing.JFrame {
             }
         });
 
+        viewlist1.setBackground(new java.awt.Color(255, 255, 255));
         viewlist1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         viewlist1.setText("View Tag List");
         viewlist1.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +131,7 @@ public class EditTags extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(474, 474, 474)
                         .addComponent(editbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63)
+                        .addGap(48, 48, 48)
                         .addComponent(resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(444, 444, 444)
@@ -136,8 +140,8 @@ public class EditTags extends javax.swing.JFrame {
                         .addComponent(tag, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(viewlist1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(viewlist1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(391, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

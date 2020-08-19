@@ -6,6 +6,7 @@
 package Timetable.Management.System;
 
 import DB.DBconnection;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
@@ -36,6 +37,7 @@ public class ViewGeneratedGroups extends javax.swing.JFrame {
         initComponents();
         showDetails();
         selectRow();
+        setLocationRelativeTo(null);
     }
 
     public void showDetails() throws SQLException{
@@ -47,6 +49,7 @@ public class ViewGeneratedGroups extends javax.swing.JFrame {
         TableCellRenderer rendererFromHeader = jTable1.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
+        jTable1.getTableHeader().setFont(new Font("TimesNewRoman", Font.PLAIN, 15));
          
         //table row alignments to center
         jTable1.getColumnModel().getColumn(0).setCellRenderer(centerAlign);
@@ -100,8 +103,11 @@ public class ViewGeneratedGroups extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         delete = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("View Generated Group IDs");
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 1200, 650));
         setMaximumSize(new java.awt.Dimension(1200, 650));
         setMinimumSize(new java.awt.Dimension(1200, 650));
 
@@ -111,6 +117,7 @@ public class ViewGeneratedGroups extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/viewgengroups.jpg"))); // NOI18N
 
+        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -119,12 +126,25 @@ public class ViewGeneratedGroups extends javax.swing.JFrame {
                 "Group ID"
             }
         ));
+        jTable1.setRowHeight(25);
+        jTable1.setRowMargin(3);
         jScrollPane1.setViewportView(jTable1);
 
+        delete.setBackground(new java.awt.Color(204, 204, 204));
+        delete.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         delete.setText("Remove Group ID");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton1.setText("Generate Group ID");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -136,11 +156,13 @@ public class ViewGeneratedGroups extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(492, 492, 492)
-                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(441, 441, 441)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(380, 380, 380)
+                        .addComponent(jButton1)
+                        .addGap(42, 42, 42)
+                        .addComponent(delete)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -150,7 +172,9 @@ public class ViewGeneratedGroups extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
-                .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 127, Short.MAX_VALUE))
         );
 
@@ -173,30 +197,40 @@ public class ViewGeneratedGroups extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-      int index = jTable1.getSelectedRow();
-       if(index != -1) {
-        int modelIndex = jTable1.convertRowIndexToModel(index); // converts the row index in the view to the appropriate index in the model
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-        model.removeRow(modelIndex);
-        
-        try{
-         Statement stmt = new DBconnection().getDB().createStatement();
-      
+        int index = jTable1.getSelectedRow();
+        if(index != -1) {
+            int modelIndex = jTable1.convertRowIndexToModel(index); // converts the row index in the view to the appropriate index in the model
+            DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+            model.removeRow(modelIndex);
+
+            try{
+                Statement stmt = new DBconnection().getDB().createStatement();
+
                 String sql = "DELETE FROM GroupIDs" +
-                   " WHERE groupid  = '"+editable+"'";
+                " WHERE groupid  = '"+editable+"'";
                 System.out.println(sql);
                 stmt.executeUpdate(sql);
-            //success msg
-            JOptionPane.showMessageDialog(this, "Record deleted succesfully","Successful",JOptionPane.INFORMATION_MESSAGE);
-       }catch(Exception e){
-       JOptionPane.showMessageDialog(this, "Error","Error",JOptionPane.ERROR_MESSAGE);
-       
-       }
-    }else{
-       
-       JOptionPane.showMessageDialog(this, "Please select a record","Error",JOptionPane.ERROR_MESSAGE);
-       }
+                //success msg
+                JOptionPane.showMessageDialog(this, "Record deleted succesfully","Successful",JOptionPane.INFORMATION_MESSAGE);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this, "Error","Error",JOptionPane.ERROR_MESSAGE);
+
+            }
+        }else{
+
+            JOptionPane.showMessageDialog(this, "Please select a record","Error",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_deleteActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      try {
+          // TODO add your handling code here:
+          new GenerateGroups().setVisible(true);
+          this.setVisible(false);
+      } catch (SQLException ex) {
+          Logger.getLogger(ViewGeneratedGroups.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,6 +273,7 @@ public class ViewGeneratedGroups extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton delete;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

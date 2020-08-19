@@ -5,6 +5,10 @@
  */
 package Timetable.Management.System;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author user
@@ -30,31 +34,77 @@ public class SystemStudent extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        viewStudent = new javax.swing.JButton();
-        addStudent = new javax.swing.JButton();
+        sgroup = new javax.swing.JButton();
+        program = new javax.swing.JButton();
+        gid = new javax.swing.JButton();
+        group = new javax.swing.JButton();
+        sgid = new javax.swing.JButton();
+        year = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1400, 750));
+        setPreferredSize(new java.awt.Dimension(1400, 750));
 
         jPanel1.setMaximumSize(new java.awt.Dimension(1400, 750));
         jPanel1.setMinimumSize(new java.awt.Dimension(1400, 750));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/students.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Student Dashboard");
 
-        viewStudent.setBackground(new java.awt.Color(204, 204, 204));
-        viewStudent.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        viewStudent.setText("View Student Details");
-
-        addStudent.setBackground(new java.awt.Color(204, 204, 204));
-        addStudent.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        addStudent.setText("Add Student Details");
-        addStudent.addActionListener(new java.awt.event.ActionListener() {
+        sgroup.setBackground(new java.awt.Color(204, 204, 204));
+        sgroup.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        sgroup.setText("Sub-Group Number");
+        sgroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addStudentActionPerformed(evt);
+                sgroupActionPerformed(evt);
+            }
+        });
+
+        program.setBackground(new java.awt.Color(204, 204, 204));
+        program.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        program.setText("Program");
+        program.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                programActionPerformed(evt);
+            }
+        });
+
+        gid.setBackground(new java.awt.Color(204, 204, 204));
+        gid.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        gid.setText("Group ID");
+        gid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gidActionPerformed(evt);
+            }
+        });
+
+        group.setBackground(new java.awt.Color(204, 204, 204));
+        group.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        group.setText("Group Number");
+        group.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                groupActionPerformed(evt);
+            }
+        });
+
+        sgid.setBackground(new java.awt.Color(204, 204, 204));
+        sgid.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        sgid.setText("Sub Group ID");
+        sgid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sgidActionPerformed(evt);
+            }
+        });
+
+        year.setBackground(new java.awt.Color(204, 204, 204));
+        year.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        year.setText("Academic year and Semster");
+        year.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearActionPerformed(evt);
             }
         });
 
@@ -62,37 +112,54 @@ public class SystemStudent extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(440, 440, 440)
-                        .addComponent(addStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(viewStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(180, 180, 180)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sgroup, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(111, 111, 111)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(program, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gid, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(111, 111, 111)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(group, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sgid, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(343, 343, 343)
+                        .addGap(355, 355, 355)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(608, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(program, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(group, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(150, Short.MAX_VALUE))
+                    .addComponent(sgroup, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gid, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sgid, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(109, 109, 109))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,10 +169,59 @@ public class SystemStudent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentActionPerformed
-       
-        new AddStudent().setVisible(true);
-    }//GEN-LAST:event_addStudentActionPerformed
+    private void sgroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sgroupActionPerformed
+        try {
+            // TODO add your handling code here:
+            new ViewSubgroups().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(SystemStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_sgroupActionPerformed
+
+    private void programActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programActionPerformed
+        try {
+            // TODO add your handling code here:
+            new ViewProgram().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(SystemStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_programActionPerformed
+
+    private void gidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gidActionPerformed
+        try {
+            // TODO add your handling code here:
+            new ViewGeneratedGroups().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(SystemStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_gidActionPerformed
+
+    private void groupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupActionPerformed
+        try {
+            // TODO add your handling code here:
+            new ViewGroup().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(SystemStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_groupActionPerformed
+
+    private void sgidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sgidActionPerformed
+        try {
+            // TODO add your handling code here:
+            new ViewGeneratedSubGroups().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(SystemStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_sgidActionPerformed
+
+    private void yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearActionPerformed
+        try {
+            // TODO add your handling code here:
+            new ViewAcademicYear().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(SystemStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_yearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,10 +259,14 @@ public class SystemStudent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addStudent;
+    private javax.swing.JButton gid;
+    private javax.swing.JButton group;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton viewStudent;
+    private javax.swing.JButton program;
+    private javax.swing.JButton sgid;
+    private javax.swing.JButton sgroup;
+    private javax.swing.JButton year;
     // End of variables declaration//GEN-END:variables
 }
